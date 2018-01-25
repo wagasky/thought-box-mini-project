@@ -20,11 +20,13 @@ describe('CreateThought', () => {
       title: 'abc',
       body: ''
     };
-    input.simulate('change', { target: { value: 'abc' } });
+    input.simulate('change', { target: { value: 'abc', name:'title' } });
 
     expect(input.node.value).toEqual('abc');
     expect(wrapper.state()).toEqual(expectedState);
   });
+
+  // doesn't like destructuring
 
   it('fires onChange on second input which should update both state & the input field', () => {
     const wrapper = mount(<CreateThought/>);
@@ -33,11 +35,13 @@ describe('CreateThought', () => {
       title: '',
       body: 'abc'
     };
-    input.simulate('change', { target: { value: 'abc' } });
+    input.simulate('change', { target: { value: 'abc', name: 'body'} });
 
     expect(input.node.value).toEqual('abc');
     expect(wrapper.state()).toEqual(expectedState);
   });
+
+  // passing
 
   it('has a submit button', () => {
     const wrapper = shallow(
@@ -46,6 +50,8 @@ describe('CreateThought', () => {
 
     expect(wrapper.find('button').length).toEqual(1);
   });
+
+  // passing
 
   it('fires submitIdea function with the data from state as an argument, and input fields go back to empty strings', () => {
     const mockedSubmit = jest.fn();
@@ -57,9 +63,10 @@ describe('CreateThought', () => {
       body: ''
     };
     const input = wrapper.find('input').last();
-    input.simulate('change', { target: { value: 'abc' } });
-    wrapper.find('button').simulate('click');
+    input.simulate('change', { target: { value: 'abc', name: 'title' } });
+    wrapper.find('button').simulate('submit');
 
+    expect(wrapper.state()).toEqual(expectedState);
 
     // What input field are we trying to target? What is the action we want to simulate?
 
