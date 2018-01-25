@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import { ThoughtList } from './thoughtList.js';
 
-describe.skip('ThoughtList', () => {
+describe.only('ThoughtList', () => {
 
   let wrapper;
 
@@ -12,6 +12,7 @@ describe.skip('ThoughtList', () => {
   })
 
   it('has a thoughtList class field', () => {
+    // renderedThoughtList
     expect(wrapper).toBeDefined();
   });
 

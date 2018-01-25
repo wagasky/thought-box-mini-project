@@ -13,6 +13,8 @@ describe('CreateThought', () => {
     expect(wrapper.find('input').length).toEqual(2);
   });
 
+  // passing
+
   it('fires an onChange event on user input which should update both state & the input field', () => {
     const wrapper = mount(<CreateThought/>);
     const input = wrapper.find('input').first();
@@ -26,7 +28,7 @@ describe('CreateThought', () => {
     expect(wrapper.state()).toEqual(expectedState);
   });
 
-  // doesn't like destructuring
+  // passing
 
   it('fires onChange on second input which should update both state & the input field', () => {
     const wrapper = mount(<CreateThought/>);
